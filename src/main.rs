@@ -7,11 +7,6 @@ static HELLO: &[u8] = b"Hello Ishtar!";
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    loop {}
-}
-
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
     let vga_buffer = 0xb8000 as *mut u8;
 
     for (i, &byte) in HELLO.iter().enumerate() {
@@ -21,5 +16,10 @@ fn panic(_info: &PanicInfo) -> ! {
         }
     }
     
+    loop {}
+}
+
+#[panic_handler]
+fn panic(_info: &PanicInfo) -> ! {
     loop{}
 }
