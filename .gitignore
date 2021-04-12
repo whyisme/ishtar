@@ -1,3 +1,6 @@
 /target
 
 *.lock
+
+##vs code
+.vscode
