@@ -7,8 +7,10 @@ use core::panic::PanicInfo;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    vga_buffer::print_sth();
-    
+    use core::fmt::Write;
+    vga_buffer::WRITER.lock().write_str("Hello again").unwrap();
+    write!(vga_buffer::WRITER.lock(), ", Ishtar!\nsome numbers: {} {}", 42, 343.43).unwrap();
+        
     loop {}
 }
 
